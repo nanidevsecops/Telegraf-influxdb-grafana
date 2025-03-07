@@ -197,4 +197,17 @@ Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstal
 
 Browser ==> http://192.168.140.129:3000
 default creds ==> user:admin ==> pwd ==> admin
-can see the c
+Grafana HomePage ==> Connections ==> Data sources ==> Add new data sources ==> influxdb ==> 
+Query language: Flux
+HTTP:
+URL: http://192.168.140.129:8086
+
+InfluxDB Details
+Organization: 
+Token: <genrate during user account creation .. first time...>
+Default Bucket: niks
+==> Save & Test        << It validates configurations that require to talk to influxdb >>
+
+On Success
+==> Dashboards ==> Add Visualization
+
