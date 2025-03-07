@@ -217,3 +217,9 @@ Default Bucket: niks
 On Success
 ==> Dashboards ==> Add Visualization ==> Select Datasource as "influxDB" ==> Enter the Flux query according to requirement"
 
+
+[root@master-pagolu-net ~]# rpm -qa --last | egrep "(influx|telegraf|grafana)"
+grafana-enterprise-11.5.2-1.x86_64            Fri 07 Mar 2025 01:11:09 PM IST
+influxdb2-2.7.11-1.x86_64                     Fri 07 Mar 2025 12:32:42 PM IST
+telegraf-1.33.3-1.x86_64                      Fri 07 Mar 2025 10:53:30 AM IST
+[root@master-pagolu-net ~]#
