@@ -117,7 +117,10 @@ export INFLUX_TOKEN=KbXoZbOl47xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 3. Start Telegraf
 Finally, you can run the following command to start the Telegraf agent running on your machine.
 telegraf --config http://192.168.140.129:8086/api/v2/telegrafs/0e88xxxxxxxxxxxxxxxx
+==> Can see errors when we start telegraf if there are errors in telegraf config
 
+can see the config file that loads on telegraf instance
+Can validate "Data Explorer" by testing metrics mentioned in telegraph config
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -194,3 +197,4 @@ Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstal
 
 Browser ==> http://192.168.140.129:3000
 default creds ==> user:admin ==> pwd ==> admin
+can see the c
