@@ -3,3 +3,29 @@
 #Install telegrapf
 #Install influxdb
 #Install grafana
+[root@master-pagolu-net ~]# yum install -y https://dl.grafana.com/enterprise/release/grafana-enterprise-11.5.2-1.x86_64.rpm
+Updating Subscription Management repositories.
+Last metadata expiration check: 0:37:37 ago on Fri 07 Mar 2025 12:32:23 PM IST.
+grafana-enterprise-11.5.2-1.x86_64.rpm                                                                                                                                                                       5.5 MB/s | 139 MB     00:25
+Dependencies resolved.
+=============================================================================================================================================================================================================================================
+ Package                                                         Architecture                                        Version                                                 Repository                                                 Size
+=============================================================================================================================================================================================================================================
+Installing:
+ grafana-enterprise                                              x86_64                                              11.5.2-1                                                @commandline                                              139 M
+
+Transaction Summary
+=============================================================================================================================================================================================================================================
+Install  1 Package
+
+Total size: 139 M
+Installed size: 527 M
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                                                     1/1
+  Installing       : grafana-enterprise-11.5.2-1.x86_64                                                                                                                                                                                  1/1
+  Running scriptlet: grafana-enterprise-11.5.2-1.x86_64                                                                                                                                                                                  1/1
