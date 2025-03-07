@@ -114,7 +114,7 @@ Mar 07 12:35:51 master-pagolu-net systemd[1]: Started InfluxDB is an open-source
 From Browser::
 http://192.168.140.129:8086/
 create user and pwd
-Upload Icon --> Sources ==> Telegraf ==> create config ==> select bucket ==> Influxdb v2 listner ==> fill "Name & desc " ==> save & test ==> This step test your configuration "Start telegraf and ensure the data is being written to influxdb"
+Upload Icon --> Sources ==> Telegraf ==> create config ==> select bucket ==>  systems ==> fill "Name & desc " ==> save & test ==> This step test your configuration "Start telegraf and ensure the data is being written to influxdb"
 1. Install the Latest Telegraf
 2. Configure your API Token
 Your API token is required for pushing data into InfluxDB. You can copy the following command to your terminal window to set an environment variable with your API token.
