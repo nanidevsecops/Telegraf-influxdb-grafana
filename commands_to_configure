@@ -2,7 +2,10 @@
 
 #Install telegrapf
 #Install influxdb
-#Install grafana
+
+
+
+Install grafana
 [root@master-pagolu-net ~]# yum install -y https://dl.grafana.com/enterprise/release/grafana-enterprise-11.5.2-1.x86_64.rpm
 Updating Subscription Management repositories.
 Last metadata expiration check: 0:37:37 ago on Fri 07 Mar 2025 12:32:23 PM IST.
@@ -29,3 +32,47 @@ Running transaction
   Preparing        :                                                                                                                                                                                                                     1/1
   Installing       : grafana-enterprise-11.5.2-1.x86_64                                                                                                                                                                                  1/1
   Running scriptlet: grafana-enterprise-11.5.2-1.x86_64                                                                                                                                                                                  1/1
+....
+### NOT starting on installation, please execute the following statements to configure grafana to start automatically using systemd
+ sudo /bin/systemctl daemon-reload
+ sudo /bin/systemctl enable grafana-server.service
+### You can start grafana-server by executing
+ sudo /bin/systemctl start grafana-server.service
+
+POSTTRANS: Running script
+
+  Verifying        : grafana-enterprise-11.5.2-1.x86_64                                                                                                                                                                                  1/1
+Installed products updated.
+
+Installed:
+  grafana-enterprise-11.5.2-1.x86_64
+
+Complete!
+[root@master-pagolu-net ~]# /bin/systemctl daemon-reload
+[root@master-pagolu-net ~]# /bin/systemctl enable grafana-server.service
+Created symlink /etc/systemd/system/multi-user.target.wants/grafana-server.service → /usr/lib/systemd/system/grafana-server.service.
+[root@master-pagolu-net ~]# /bin/systemctl start grafana-server.service
+[root@master-pagolu-net ~]# /bin/systemctl status grafana-server.service
+● grafana-server.service - Grafana instance
+     Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2025-03-07 13:14:53 IST; 13s ago
+       Docs: http://docs.grafana.org
+   Main PID: 36576 (grafana)
+      Tasks: 18 (limit: 17187)
+     Memory: 247.2M
+        CPU: 8.494s
+     CGroup: /system.slice/grafana-server.service
+             └─36576 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --pidfile=/var/run/grafana/grafana-server.pid --packaging=rpm cfg:default.paths.logs=/var/log/grafana cfg:default.paths.data=/var/lib/grafana c>
+
+Mar 07 13:14:54 master-pagolu-net grafana[36576]: logger=app-registry t=2025-03-07T13:14:54.393951733+05:30 level=info msg="app registry initialized"
+Mar 07 13:14:56 master-pagolu-net grafana[36576]: logger=plugin.installer t=2025-03-07T13:14:56.135964033+05:30 level=info msg="Installing plugin" pluginId=grafana-lokiexplore-app version=
+Mar 07 13:14:56 master-pagolu-net grafana[36576]: logger=installer.fs t=2025-03-07T13:14:56.32485788+05:30 level=info msg="Downloaded and extracted grafana-lokiexplore-app v1.0.8 zip successfully to /var/lib/grafana/plugins/grafana-loki>
+Mar 07 13:14:56 master-pagolu-net grafana[36576]: logger=plugins.registration t=2025-03-07T13:14:56.415299786+05:30 level=info msg="Plugin registered" pluginId=grafana-lokiexplore-app
+Mar 07 13:14:56 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstaller t=2025-03-07T13:14:56.415878772+05:30 level=info msg="Plugin successfully installed" pluginId=grafana-lokiexplore-app version= duration=2.778949937s
+Mar 07 13:14:56 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstaller t=2025-03-07T13:14:56.415977645+05:30 level=info msg="Installing plugin" pluginId=grafana-pyroscope-app version=
+Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugin.installer t=2025-03-07T13:14:57.37251756+05:30 level=info msg="Installing plugin" pluginId=grafana-pyroscope-app version=
+Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=installer.fs t=2025-03-07T13:14:57.51820543+05:30 level=info msg="Downloaded and extracted grafana-pyroscope-app v1.1.0 zip successfully to /var/lib/grafana/plugins/grafana-pyrosc>
+Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugins.registration t=2025-03-07T13:14:57.620687888+05:30 level=info msg="Plugin registered" pluginId=grafana-pyroscope-app
+Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstaller t=2025-03-07T13:14:57.620920978+05:30 level=info msg="Plugin successfully installed" pluginId=grafana-pyroscope-app version= duration=1.204886313s
+[root@master-pagolu-net ~]#
+
