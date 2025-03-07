@@ -1,6 +1,7 @@
 #vm: rhel9 on vm player with RH dev subscription
 * Check Vedor's official page for the lastest installations
 https://docs.influxdata.com/influxdb/v2/install/?t=Linux
+https://grafana.com/grafana/download?pg=get&platform=linux&plcmt=selfmanaged-box1-cta1
 
 Concept:
 Monitor systems ==> with telegraf which collects the data and push the data to time-series database influxDB <== which Grafana reads the data from InfluxDB and using Flux query it displays the results on Dashboard
