@@ -1,6 +1,12 @@
 #vm: rhel9 on vm player with RH dev subscription
 * Check Vedor's official page for the lastest installations
 
+
+Concept:
+Monitor systems ==> with telegraf which collects the data and push the data to time-series database influxDB <== which Grafana reads the data from InfluxDB and using Flux query it displays the results on Dashboard
+
+
+
 step1#Install telegrapf
 
 cat <<EOF | sudo tee /etc/yum.repos.d/influxdata.repo
@@ -209,5 +215,5 @@ Default Bucket: niks
 ==> Save & Test        << It validates configurations that require to talk to influxdb >>
 
 On Success
-==> Dashboards ==> Add Visualization
+==> Dashboards ==> Add Visualization ==> Select Datasource as "influxDB" ==> Enter the Flux query according to requirement"
 
