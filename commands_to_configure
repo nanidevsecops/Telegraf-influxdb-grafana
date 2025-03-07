@@ -15,6 +15,12 @@ gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-influxdata
 
 default config fil location ==> /etc/telegraf/telegraf.conf
 
+
+#firewall-cmd --add-port=8086/tcp --permanent   ==> for influxdb
+#firewall-cmd --add-port=3000/tcp --permanent  ==> for Grafana
+#firewall-cmd --reload
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 step2 #Install influxdb
@@ -99,7 +105,9 @@ Mar 07 12:35:51 master-pagolu-net systemd[1]: Started InfluxDB is an open-source
 [root@master-pagolu-net yum.repos.d]#
 [root@master-pagolu-net yum.repos.d]#
 
-
+From Browser::
+http://192.168.140.129:8086/
+create user and pwd
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 step3.Install grafana
@@ -173,3 +181,5 @@ Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugins.registration t=
 Mar 07 13:14:57 master-pagolu-net grafana[36576]: logger=plugin.backgroundinstaller t=2025-03-07T13:14:57.620920978+05:30 level=info msg="Plugin successfully installed" pluginId=grafana-pyroscope-app version= duration=1.204886313s
 [root@master-pagolu-net ~]#
 
+Browser ==> http://192.168.140.129:3000
+default creds ==> user:admin ==> pwd ==> admin
