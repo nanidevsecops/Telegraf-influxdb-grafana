@@ -1,8 +1,19 @@
 #vm: rhel9 on vm player with RH dev subscription
+* Check Vedor's official page for the lastest installations
 
 step1#Install telegrapf
 
+cat <<EOF | sudo tee /etc/yum.repos.d/influxdata.repo
+[influxdata]
+name = InfluxData Repository - Stable
+baseurl = https://repos.influxdata.com/stable/$basearch/main
+enabled = 1
+gpgcheck = 1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-influxdata
 
+#yum install telegraf
+
+default config fil location ==> /etc/telegraf/telegraf.conf
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
