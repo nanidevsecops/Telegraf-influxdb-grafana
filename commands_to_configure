@@ -1,11 +1,97 @@
 #vm: rhel9 on vm player with RH dev subscription
 
-#Install telegrapf
-#Install influxdb
+step1#Install telegrapf
 
 
 
-Install grafana
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+step2 #Install influxdb
+[root@master-pagolu-net yum.repos.d]# yum install influxdb2
+Updating Subscription Management repositories.
+InfluxData Repository - Stable                                                                                                                                                                               315  B/s | 366  B     00:01
+Errors during downloading metadata for repository 'influxdata':
+  - Status code: 404 for https://repos.influxdata.com/stable/main/repodata/repomd.xml (IP: 3.164.85.119)
+Error: Failed to download metadata for repo 'influxdata': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried
+[root@master-pagolu-net yum.repos.d]# vi influxdata.repo
+[root@master-pagolu-net yum.repos.d]#
+[root@master-pagolu-net yum.repos.d]# yum install influxdb2
+Updating Subscription Management repositories.
+InfluxData Repository - Stable                                                                                                                                                                               4.7 kB/s | 3.0 kB     00:00
+Dependencies resolved.
+=============================================================================================================================================================================================================================================
+ Package                                                   Architecture                                           Version                                                   Repository                                                  Size
+=============================================================================================================================================================================================================================================
+Installing:
+ influxdb2                                                 x86_64                                                 2.7.11-1                                                  influxdata                                                  47 M
+
+Transaction Summary
+=============================================================================================================================================================================================================================================
+Install  1 Package
+
+Total download size: 47 M
+Installed size: 116 M
+Is this ok [y/N]: y
+Downloading Packages:
+influxdb2-2.7.11-1.x86_64.rpm                                                                                                                                                                                4.8 MB/s |  47 MB     00:09
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                        4.8 MB/s |  47 MB     00:09
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                                                     1/1
+  Running scriptlet: influxdb2-2.7.11-1.x86_64                                                                                                                                                                                           1/1
+  Installing       : influxdb2-2.7.11-1.x86_64                                                                                                                                                                                           1/1
+  Running scriptlet: influxdb2-2.7.11-1.x86_64                                                                                                                                                                                           1/1
+Created symlink /etc/systemd/system/influxd.service → /usr/lib/systemd/system/influxdb.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/influxdb.service → /usr/lib/systemd/system/influxdb.service.
+
+  Verifying        : influxdb2-2.7.11-1.x86_64                                                                                                                                                                                           1/1
+Installed products updated.
+
+Installed:
+  influxdb2-2.7.11-1.x86_64
+
+Complete!
+[root@master-pagolu-net yum.repos.d]# systemctl status influxdb.service
+○ influxdb.service - InfluxDB is an open-source, distributed, time series database
+     Loaded: loaded (/usr/lib/systemd/system/influxdb.service; enabled; preset: disabled)
+     Active: inactive (dead)
+       Docs: https://docs.influxdata.com/influxdb/
+[root@master-pagolu-net yum.repos.d]# systemctl start influxdb.service
+[root@master-pagolu-net yum.repos.d]# systemctl status influxdb.service
+● influxdb.service - InfluxDB is an open-source, distributed, time series database
+     Loaded: loaded (/usr/lib/systemd/system/influxdb.service; enabled; preset: disabled)
+     Active: active (running) since Fri 2025-03-07 12:35:51 IST; 1s ago
+       Docs: https://docs.influxdata.com/influxdb/
+    Process: 36190 ExecStart=/usr/lib/influxdb/scripts/influxd-systemd-start.sh (code=exited, status=0/SUCCESS)
+   Main PID: 36191 (influxd)
+      Tasks: 9 (limit: 17187)
+     Memory: 58.9M
+        CPU: 1.227s
+     CGroup: /system.slice/influxdb.service
+             └─36191 /usr/bin/influxd
+
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.111089Z lvl=info msg="Open store (end)" log_id=0v7rdR~0000 service=storage-engine service=store op_name=tsdb_open op_event=end op_elapsed=0.055ms
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.111180Z lvl=info msg="Starting retention policy enforcement service" log_id=0v7rdR~0000 service=retention check_interval=30m
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.111381Z lvl=info msg="Starting precreation service" log_id=0v7rdR~0000 service=shard-precreation check_interval=10m advance_period=30m
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.113825Z lvl=info msg="Starting query controller" log_id=0v7rdR~0000 service=storage-reads concurrency_quota=1024 initial_memory_bytes_quota_per_qu>
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.116807Z lvl=info msg="Configuring InfluxQL statement executor (zeros indicate unlimited)." log_id=0v7rdR~0000 max_select_point=0 max_select_series>
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.126455Z lvl=info msg=Starting log_id=0v7rdR~0000 service=telemetry interval=8h
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36191]: ts=2025-03-07T07:05:51.130769Z lvl=info msg=Listening log_id=0v7rdR~0000 service=tcp-listener transport=http addr=:8086 port=8086
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36220]: Command "print-config" is deprecated, use the influx-cli command server-config to display the configuration values from the running server
+Mar 07 12:35:51 master-pagolu-net influxd-systemd-start.sh[36190]: InfluxDB started
+Mar 07 12:35:51 master-pagolu-net systemd[1]: Started InfluxDB is an open-source, distributed, time series database.
+[root@master-pagolu-net yum.repos.d]#
+[root@master-pagolu-net yum.repos.d]#
+[root@master-pagolu-net yum.repos.d]#
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+step3.Install grafana
 [root@master-pagolu-net ~]# yum install -y https://dl.grafana.com/enterprise/release/grafana-enterprise-11.5.2-1.x86_64.rpm
 Updating Subscription Management repositories.
 Last metadata expiration check: 0:37:37 ago on Fri 07 Mar 2025 12:32:23 PM IST.
