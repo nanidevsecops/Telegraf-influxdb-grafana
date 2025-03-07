@@ -1,6 +1,6 @@
 #vm: rhel9 on vm player with RH dev subscription
 * Check Vedor's official page for the lastest installations
-
+https://docs.influxdata.com/influxdb/v2/install/?t=Linux
 
 Concept:
 Monitor systems ==> with telegraf which collects the data and push the data to time-series database influxDB <== which Grafana reads the data from InfluxDB and using Flux query it displays the results on Dashboard
